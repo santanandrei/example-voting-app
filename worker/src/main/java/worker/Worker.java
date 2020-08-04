@@ -47,10 +47,10 @@ class Worker {
 
   static Jedis connectToRedis(String host) {
     Jedis conn = new Jedis(host);
-
+    
     while (true) {
       try {
-        conn.keys("*");
+    	conn.auth("redis_password");
         break;
       } catch (JedisConnectionException e) {
         System.err.println("Waiting for redis");
